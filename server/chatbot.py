@@ -44,10 +44,16 @@ sched = BackgroundScheduler({'apscheduler.timezone': 'Asia/Seoul'})
 #sched.add_job(update_db, 'cron', hours=24)
 # scheduling dbupdate at 6:00(pm) ervery day
 
+def update_korea():
+    print("koreadb 업데이트 진행중")
+    import newkoreadb
+    import korea_graph
+    print("koreadb 업데이트 완료")
+
 sched.add_job(update_db,'cron', day_of_week='0-6', hour=10)
 sched.add_job(news_update, 'interval', hours=2)
 # sched.add_job(distance_update,'interval', hours = 3)
-sched.add_job(update_KoreaDB, 'cron', day_of_week='0-6', hour=13) # KoreaDB 오후 1시 업데이트
+sched.add_job(update_korea, 'cron', day_of_week='0-6', hour=12) # koreadb 오후 12시 업데이트
 sched.start()
 
 app = Flask(__name__)
