@@ -26,8 +26,8 @@ def nrefresh_db():
 
 # 아이디, 키는 보안을 위해 지움
 def crawl_naver():
-    client_id = "xxxxx"  # 취득한 아이디 넣기
-    client_secret = "xxxxx"  # 취득한 키 넣기
+    client_id = "BMMCxLy7yJWCna0lxGcL"  # 취득한 아이디 넣기
+    client_secret = "2tVAp55OCM"  # 취득한 키 넣기
     encode_type = 'json'
     max_display = 5
     sort = 'date'
@@ -50,14 +50,14 @@ def crawl_naver():
             date = f'발행일시 : {pub_date.year}년 {pub_date.month}월 {pub_date.day}일 {pub_date.hour}시 {pub_date.minute}분'
             title = html.unescape(item['title']).replace("<b>", "").replace("</b>", "")
 
-            img_url = f'https://openapi.naver.com/v1/search/image.{encode_type}?query={title}&display={str(1)}'
-            r_img = requests.get(img_url, headers=headers)
-            j_img = json.loads(r_img.text)
-            thumb = ""
-            for k in j_img['items']:
-                thumb = k['link']
-            if thumb == "":
-                thumb = "https://image.dongascience.com/Photo/2020/01/008f1295bea0e575bdb0d8fcdd1a7390.jpg"
+            # img_url = f'https://openapi.naver.com/v1/search/image.{encode_type}?query={title}&display={str(1)}'
+            # r_img = requests.get(img_url, headers=headers)
+            # j_img = json.loads(r_img.text)
+            # thumb = ""
+            # for k in j_img['items']:
+            #     thumb = k['link']
+            # if thumb == "":
+            thumb = "https://user-images.githubusercontent.com/48379869/102453617-ec097880-407f-11eb-98c1-964771c4a44e.png"
             add_list.append([i, title, date, thumb, item['link']])
 
     insert_db(add_list)
